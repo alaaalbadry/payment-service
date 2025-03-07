@@ -12,7 +12,7 @@ import java.util.function.Function;
 
 @Component
 public class JwtUtil {
-    private static final String SECRET_KEY_BASE64 = "6yyD3WGNPBQ/sHDUSzZOw1LopA3W3E7D2a6VWjK0WzA=";
+    private static final String SECRET_KEY_BASE64 = "nR85cV0ML0GvhuQsW/cq570c/sBozav84C6v3CIUJPA=";
 
     private SecretKey getSigningKey() {
         byte[] keyBytes = Base64.getDecoder().decode(SECRET_KEY_BASE64);
