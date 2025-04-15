@@ -18,9 +18,8 @@ public class PaymentController {
     private PaymentService paymentService;
 
     @GetMapping("/details")
-    @PreAuthorize("hasAuthority('ROLE_USER') or hasAuthority('ROLE_ADMIN')")
     public String getPaymentDetails() {
-        return "Payment Details for Authenticated User";
+        return "Payment Details from routing";
     }
 
     @GetMapping("/list")
