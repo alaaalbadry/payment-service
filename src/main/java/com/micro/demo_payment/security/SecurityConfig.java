@@ -59,6 +59,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         // Allow public access to authentication endpoints
+                        .requestMatchers("/payments/process").permitAll() // <-- this is critical
                         .requestMatchers("/auth/login", "/auth/admin/login", "/auth/user/login").permitAll()
                         .requestMatchers("/payments/details", "/payments/list", "/payments/create").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                         // Deny all other requests

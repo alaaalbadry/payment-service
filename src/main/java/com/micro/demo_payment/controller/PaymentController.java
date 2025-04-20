@@ -1,6 +1,7 @@
 package com.micro.demo_payment.controller;
 
 
+import com.micro.demo_payment.dto.PaymentRequest;
 import com.micro.demo_payment.model.Payment;
 import com.micro.demo_payment.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,14 @@ public class PaymentController {
     public ResponseEntity<Payment> createPayment(@RequestBody Payment payment) {
         Payment createdPayment = paymentService.createPayment(payment);
         return new ResponseEntity<>(createdPayment, HttpStatus.CREATED);
+    }
+    @PostMapping("/process")
+    public ResponseEntity<String> processPayment(@RequestBody PaymentRequest request) {
+        // Logic to process the payment
+        System.out.println("Processing payment for Order ID: " + request.getOrderId() +
+                ", Amount: " + request.getAmount());
+
+        return ResponseEntity.ok("Payment processed successfully for Order ID: " + request.getOrderId());
     }
 
 }

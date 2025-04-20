@@ -25,27 +25,21 @@ public class OrderEventListener {
     }
 
     //payment listen to order orchestrator
-    @KafkaListener(topics = "validate-payment", groupId = "payment", containerFactory = "validatePaymentKafkaListenerContainerFactory")
-    public void handleValidatePayment(ValidatePaymentCommand command) {
-        System.out.println("Received Validate Payment command in Order Service: " + command);
-        PaymentValidatedEvent event = new PaymentValidatedEvent(
-                command.getOrderId(),
-                "VALIDATED",
-                "Payment validated successfully"
-        );
-        String payload = null;
-        try {
-            payload = objectMapper.writeValueAsString(event);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
-        kafkaTemplate.send("payment-validated", payload);
-    }
-
-//    @KafkaListener(topics = "order-events", groupId = "my-group")
-//    public void listen(String message) {
-//        System.out.println("Received message: " + message);
-//        // Process message here
+//    @KafkaListener(topics = "validate-payment", groupId = "payment", containerFactory = "validatePaymentKafkaListenerContainerFactory")
+//    public void handleValidatePayment(ValidatePaymentCommand command) {
+//        System.out.println("Received Validate Payment command in Order Service: " + command);
+//        PaymentValidatedEvent event = new PaymentValidatedEvent(
+//                command.getOrderId(),
+//                "VALIDATED",
+//                "Payment validated successfully"
+//        );
+//        String payload = null;
+//        try {
+//            payload = objectMapper.writeValueAsString(event);
+//        } catch (JsonProcessingException e) {
+//            throw new RuntimeException(e);
+//        }
+//        kafkaTemplate.send("payment-validated", payload);
 //    }
 
 }
